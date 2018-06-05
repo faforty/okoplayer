@@ -6,13 +6,14 @@ export default ({
     let player
 
     if (type === 'hls') {
-      player = new HlsPlayer(elementPlayer, url)
+      player = HlsPlayer()
     } else if (type === 'mp4') {
-      player = new DefaultPlayer(elementPlayer, url)
+      player = DefaultPlayer()
     }
     // return new Promise(function(resolve, reject) {
       // player.init(resolve)
     // });
+    player.constructor(elementPlayer, url)
 
     return player
   }

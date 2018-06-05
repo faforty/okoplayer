@@ -1,12 +1,13 @@
 import Player from './Player'
 import Hls from 'hls.js'
 
-export default class HlsPlayer extends Player {
-  constructor (elementPlayer, url) {
-    super(elementPlayer, url)
+export default () => ({
+  ...Player,
 
+  constructor (elementPlayer, url) {
+    this._super(...arguments)
     this.load()
-  }
+  },
 
   load () {
     this.hls = new Hls()
@@ -16,4 +17,4 @@ export default class HlsPlayer extends Player {
       this.play()
     })
   }
-}
+})
