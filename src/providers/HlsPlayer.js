@@ -1,20 +1,26 @@
 import Player from './Player'
-import Hls from 'hls.js'
+import HLS from 'hls.js'
 
 export default () => ({
   ...Player,
 
   constructor (elementPlayer, url) {
     this._super(...arguments)
-    this.load()
   },
 
   load () {
-    this.hls = new Hls()
+    this.hls = new HLS()
     this.hls.loadSource(this._linkVideo)
     this.hls.attachMedia(this._elementPlayer)
-    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+    this.hls.on(HLS.Events.MANIFEST_PARSED, () => {
       this.play()
+    })
+    this.hls.on(HLS.Events.MANIFEST_PARSED, (event, data) => {
+      //resolve()
+    })
+    this.hls.on(HLS.Events.LEVEL_LOADED, (event, data) => {
+      this.isLive_ = data.details.live
+      // resolve()
     })
   }
 })

@@ -5,7 +5,6 @@ export default () => ({
 
   constructor (elementPlayer, url) {
     this._super(...arguments)
-    this.load()
   },
 
   load () {

@@ -10,10 +10,9 @@ export default ({
     } else if (type === 'mp4') {
       player = DefaultPlayer()
     }
-    // return new Promise(function(resolve, reject) {
-      // player.init(resolve)
-    // });
+
     player.constructor(elementPlayer, url)
+    player.load()
 
     return player
   }
